@@ -6,13 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trivia Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Londrina+Shadow" rel="stylesheet">
+
 
 </head>
 <body>
-  
-<h1>Trivia Game</h1>   
+
+    <div class="jumbotron jumbotron-fluid" id="jumbo">
+        <div class="container">
+          <h1 class="display-4">Brand Slogan Trivia Game</h1>
+          <p class="lead">Guess the company behind the slogan before the time runs out.</p>
+        </div>
+      </div>
 
 <div class="question"></div>
 
@@ -22,6 +29,8 @@
 <button type="button" class="btn" id="D"></button>
 
 <div class="gamestatus"></div>
+<div class="wins"></div>
+<div class="losses"></div>
 
 <script src="assets/javascript/app.js"></script>
 
