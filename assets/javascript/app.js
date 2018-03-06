@@ -15,13 +15,13 @@ function resetVar(){
 
     game = {
 
-    question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow","They're GR-R-REAT!", "It Keeps Going, and Going, and Going...","Life's Messy, Clean it Up","I'm Lovin it"],
-    industry: ["shoe company's", "airline's", "car maker's","candy's","cereal's","battery brand's","vacuum brand's","fast food restaurant's"],
-    correctAnswer: ["Nike", "United", "BMW","Skittles","Frosted Flakes","Energizer","Bissell","McDonald's"],
-    wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's", "Rice Krispies","Duracell","Hoover","In-n-Out"],
-    wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces", "Cocoa Puffs","Rayovac","Dyson","Burger King"],
-    wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst", "Fruity Pebbles","Eveready","Eureka","Taco Bell"],
-    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg","frostedflakes.jpg","energizer.jpg","bissell.png","mcdonalds.png"]
+    question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow","They're GR-R-REAT!", "It Keeps Going, and Going, and Going...","Life's Messy, Clean it Up","I'm Lovin it","Taste the Feeling","Once You Pop, You Can’t Stop."],
+    industry: ["shoe company's", "airline's", "car maker's","candy's","cereal's","battery brand's","vacuum brand's","fast food restaurant's", "soft drink's","snack food's"],
+    correctAnswer: ["Nike", "United", "BMW","Skittles","Frosted Flakes","Energizer","Bissell","McDonald's","Coca-Cola","Pringles"],
+    wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's", "Rice Krispies","Duracell","Hoover","In-n-Out","Pepsi","Lays"],
+    wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces", "Cocoa Puffs","Rayovac","Dyson","Burger King","Mountain Dew","Utz"],
+    wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst", "Fruity Pebbles","Eveready","Eureka","Taco Bell","Dr.Pepper","Ruffles"],
+    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg","frostedflakes.jpg","energizer.jpg","bissell.png","mcdonalds.png","coke.jpg","pringles.png"]
 
     }
 
