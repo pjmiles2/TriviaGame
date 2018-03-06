@@ -7,17 +7,17 @@
 .display-4 {
 
 
-    font-family: 'Bowlby One SC', cursive;
+    font-family: 'Alfa Slab One', cursive;
     font-size: 50pt;
     color: white;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     text-align: center;
 
 }
 
 .btn {
 
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Roboto Slab', serif;
 
 
 }
@@ -25,16 +25,16 @@
 .lead {
 
 
-    font-family: 'Bowlby One SC', cursive;
+    font-family: 'Alfa Slab One', cursive;
     font-size: 20pt;
     color: white;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 }
 
 .question {
 
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Roboto Slab', serif;
     color: white;
     font-size: 20pt;
     text-align: center;
@@ -45,7 +45,7 @@
 
 p4 {
 
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Roboto Slab', serif;
     color: white;
     font-size: 50pt;
     text-align: left;
@@ -54,7 +54,7 @@ p4 {
 
 #right {
 
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Roboto Slab', serif;
     color: white;
     font-size: 20pt;
     text-align: right;
@@ -63,7 +63,7 @@ p4 {
 
 p2 {
 
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Roboto Slab', serif;
     color: white;
     font-size: 20pt;
     text-align: center;

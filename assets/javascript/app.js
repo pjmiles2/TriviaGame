@@ -15,8 +15,8 @@ function resetVar(){
 
     game = {
 
-    question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow","They're GR-R-REAT!", "It Keeps Going, and Going, and Going...","Life's Messy, Clean it Up","I'm Lovin it","Taste the Feeling","Once You Pop, You Can’t Stop."],
-    industry: ["shoe company's", "airline's", "car maker's","candy's","cereal's","battery brand's","vacuum brand's","fast food restaurant's", "soft drink's","snack food's"],
+    question: ['"Just Do It"','"Fly the Friendly Skies"', '"The Ultimate Driving Machine"','"Taste the Rainbow"','"They&#39;re GR-R-REAT!"', '"It Keeps Going, and Going, and Going..."','"Life&#39;s Messy, Clean it Up"','"I&#39;m Lovin it"','"Taste the Feeling"','"Once You Pop, You Can&#39;t Stop"'],
+    industry: ["shoe company", "airline", "car maker","candy","cereal","battery brand","vacuum brand","fast food restaurant", "soft drink","snack food"],
     correctAnswer: ["Nike", "United", "BMW","Skittles","Frosted Flakes","Energizer","Bissell","McDonald's","Coca-Cola","Pringles"],
     wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's", "Rice Krispies","Duracell","Hoover","In-n-Out","Pepsi","Lays"],
     wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces", "Cocoa Puffs","Rayovac","Dyson","Burger King","Mountain Dew","Utz"],
@@ -122,7 +122,7 @@ console.log(answerArray);
 
 $(".gamestatus").show();
 
-$(".question").html("Which " + game.industry[current] + " slogan is " + game.question[current] +"?");
+$(".question").html(game.question[current] + " is the slogan for which " + game.industry[current] + "?");
 
 answerA = randomArray[0];
 answerB = randomArray[1];
