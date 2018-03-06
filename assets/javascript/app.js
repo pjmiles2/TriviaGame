@@ -85,9 +85,10 @@ function resetVariables(){
 };
 
 function newQuestion(){
-
+    
+    $(".gamestatus").hide();
     resetVariables();
-
+    
 if (game.question.length === 0) { 
     
     $(".question").html('<img src="assets/images/gameover.jpg" width="100%" />');
@@ -95,7 +96,6 @@ if (game.question.length === 0) {
     $("#B").hide();
     $("#C").hide();
     $("#D").hide();
-    $(".gamestatus").hide();
     $("#start").show();
 
     
@@ -118,9 +118,7 @@ randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
 
 console.log(answerArray);
 
-//$(".question").show();
-
-$(".gamestatus").show();
+$(".clock").show();
 
 $(".question").html(game.question[current] + " is the slogan for which " + game.industry[current] + "?");
 
@@ -136,21 +134,25 @@ $("#D").html(answerD);
 
 var count = 15;
 interval = setInterval(function(){
-  $(".gamestatus").html("<p3>" + count + "</p3>");
+  $(".clock").html("<p3>" + count + "</p3>");
   count--;
   if (count === 0){
     clearInterval(interval);
+    $(".clock").hide();
+    $(".gamestatus").show();
+
     $(".gamestatus").html("<p2>Time's Up!<br>The correct answer is " + game.correctAnswer[current] + "</p2>");
-   // $(".question").hide();
-   // $(".question").empty();
 
     $("#A").hide();
     $("#B").hide();
     $("#C").hide();
     $("#D").hide();
+ 
     losses++;
+
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
+
     remove();
     resetGame();
 
@@ -191,17 +193,21 @@ function winLoss() {
     $("#D").hide();
 
     if (userChoice === game.correctAnswer[current]) {
+        $(".gamestatus").show();
 
         $(".gamestatus").html("<p2>Correct! " + game.question[current] + " is the slogan for " + userChoice + ".</p2>");
         $(".question").html('<img src="assets/images/' + game.pix[current] + '" width="100%" />');
+        $(".clock").hide();
         wins++;
         remove();
         resetGame();
 
     } else {
-      
+        $(".gamestatus").show();
+
         $(".gamestatus").html("<p2>Wrong! The correct answer is " + game.correctAnswer[current] + "</p2>");
         $(".question").html('<img src="assets/images/wrong.png" width="100%" />');
+        $(".clock").hide();
         losses++;
         remove();
         resetGame();
