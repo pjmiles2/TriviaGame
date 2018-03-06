@@ -9,8 +9,8 @@ var losses = 0;
 var userChoice;
 var current;
 var answerArray;
-var windowTimeout = 0;
-var resetTimeout = 0;
+var randomArray;
+var interval;
 
 var game = {
 
@@ -27,17 +27,69 @@ $("#start").on("click", function(){
     newQuestion();
     $("#start").hide();
 
+
+    $("button").on("click", function(){
+        
+        console.log("onclick");
+        clearInterval(interval);
+
+        if (this.id === "A") {
+
+            userChoice = answerA;
+
+        } else if (this.id === "B") {
+        
+            userChoice = answerB;
+
+        } else if (this.id === "C"){
+
+            userChoice = answerC;
+        }
+        
+            else {userChoice = answerD;
+            };
+        
+
+        winLoss();
+
+
+    });
+
 });
 
-function newQuestion(){
-  
 
-var current = Math.floor(Math.random() * game.question.length);
+
+function resetVariables(){
+
+    userChoice = "";
+    current = "";
+    answerArray = [];
+    randomArray = [];
+    var answerA = "";
+    var answerB = "";
+    var answerC = "";
+    var answerD = "";
+    for (var i = answerArray.length; i > 0; i--) {
+ 
+        answerArray.pop();
+        
+       }
+       console.log(answerArray);
+       console.log(randomArray);
+};
+
+
+function newQuestion(){
+
+    console.log('newQuestion');
+resetVariables();
+
+current = Math.floor(Math.random() * game.question.length);
 console.log(current);
     
 answerArray = [game.correctAnswer[current], game.wrongChoice1[current], game.wrongChoice2[current], game.wrongChoice3[current]];
 
-var randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
+randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
 
 console.log(answerArray);
 
@@ -47,44 +99,20 @@ $(".gamestatus").show();
 
 $(".question").html("Which " + game.industry[current] + " slogan is " + game.question[current] +"?");
 
-var answerA = randomArray[0];
-var answerB = randomArray[1];
-var answerC = randomArray[2];
-var answerD = randomArray[3];
+answerA = randomArray[0];
+answerB = randomArray[1];
+answerC = randomArray[2];
+answerD = randomArray[3];
 
 $("#A").html(answerA);
 $("#B").html(answerB);
 $("#C").html(answerC);
 $("#D").html(answerD);
 
-
-
-var count = 15;
-var interval = setInterval(function(){
-  $(".gamestatus").html("Time Left: " + count + " seconds.");
-  count--;
-  if (count === 0){
-    clearInterval(interval);
-    $(".gamestatus").html("Time's Up");
-    $(".question").hide();
-    $(".question").empty();
-
-    $("#A").empty();
-    $("#B").empty();
-    $("#C").empty();
-    $("#D").empty();
-    losses++;
-    resetGame();
-  }
-}, 1000);
-
-
-
-
-$("button").on("click", function(){
+/*$("button").on("click", function(){
     
+    console.log("onclick");
     clearInterval(interval);
-
 
     if (this.id === "A") {
 
@@ -102,20 +130,49 @@ $("button").on("click", function(){
         else {userChoice = answerD;
         };
     
-     console.log(userChoice);
 
      winLoss();
 
 
-});
+});*/
+
+var count = 15;
+interval = setInterval(function(){
+  $(".gamestatus").html("Time Left: " + count + " seconds.");
+  count--;
+  if (count === 0){
+    clearInterval(interval);
+    $(".gamestatus").html("Time's Up");
+    $(".question").hide();
+    $(".question").empty();
+
+    $("#A").empty();
+    $("#B").empty();
+    $("#C").empty();
+    $("#D").empty();
+    losses++;
+    console.log('new question 1');
+    newQuestion();
+  }
+}, 1000);
+
+
+
+
+
+
+
+
+};
 
 function resetGame(){
-
-    var resetcount = 2;
-    var interval = setInterval(function(){
-      count--;
-      if (count === 0){
-      newQuestion();
+    console.log('reset');
+    var resetCount = 2;
+    var resetInterval = setInterval(function(){
+      resetCount--;
+      if (resetCount === 0){
+          console.log('new question 2');
+        newQuestion();
       }
     }, 1000);
 
@@ -125,32 +182,30 @@ function resetGame(){
 
 function winLoss() { 
 
-
+    console.log('winloss');
     if (userChoice === game.correctAnswer[current]) {
 
 
         $(".gamestatus").html("Correct! " + game.question[current] + " is the slogan for " + userChoice + ".");
-        resetGame();
+        userChoice = "";
         wins++;
+        resetGame();
 
 
     } else {
 
         $(".gamestatus").html("Wrong!!");
-      
         losses++;
+        resetGame();
+
     };
 
-    resetGame();
 
 
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
 
 }
-
-
-};
 
 
 
