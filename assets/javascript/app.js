@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+//set global variables
 var wins;
 var losses;
 var userChoice;
@@ -7,10 +9,10 @@ var current;
 var answerArray;
 var randomArray;
 var interval;
-
+var count;
 var game;
 
-
+// game object and score in a function so it can be reset at the end of the game.
 function resetVar(){
 
     game = {
@@ -21,7 +23,7 @@ function resetVar(){
     wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's", "Rice Krispies","Duracell","Hoover","In-n-Out","Pepsi","Lays"],
     wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces", "Cocoa Puffs","Rayovac","Dyson","Burger King","Mountain Dew","Utz"],
     wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst", "Fruity Pebbles","Eveready","Eureka","Taco Bell","Dr.Pepper","Ruffles"],
-    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg","frostedflakes.jpg","energizer.jpg","bissell.png","mcdonalds.png","coke.jpg","pringles.png"]
+    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg","frostedflakes.jpg","energizer.jpg","bissell.jpg","mcdonalds.svg","coke.svg","pringles.png"]
 
     }
 
@@ -31,12 +33,13 @@ function resetVar(){
 
 };
 
+//hiding answer buttons until a question is posted
 $("#A").hide();
 $("#B").hide();
 $("#C").hide();
 $("#D").hide();
 
-
+//start button to start the game, then it disappears
 $("#start").on("click", function(){
     
     resetVar(); 
@@ -45,7 +48,9 @@ $("#start").on("click", function(){
     $(".losses").html("Wrong Answers: "+ losses);
     $("#start").hide();
 });
-    $(".btn-primary").on("click", function(){
+
+//event listeners for answer buttons
+$(".btn-primary").on("click", function(){
         
         console.log("onclick");
         clearInterval(interval);
@@ -66,10 +71,10 @@ $("#start").on("click", function(){
         else {userChoice = answerD;};
         
         winLoss();
-    });
+});
 
 
-
+//function to reset all the variables between questions (i put this here because i was having issues with restarting the game but im not sure if it is necessary)
 
 function resetVariables(){
 
@@ -81,14 +86,18 @@ function resetVariables(){
     var answerB = "";
     var answerC = "";
     var answerD = "";
-
 };
 
+//function to pull up a new question
 function newQuestion(){
     
     $(".gamestatus").hide();
+    $(".clock").html("");
+    $(".clock").show();
+
     resetVariables();
-    
+    clearInterval(interval);
+//test to see if there are any questions left, if not the game is over and there is a button to restart    
 if (game.question.length === 0) { 
     
     $(".question").html('<img src="assets/images/gameover.jpg" width="100%" />');
@@ -100,43 +109,46 @@ if (game.question.length === 0) {
 
     
 }
-
+//if there are still questions left, the answer buttons will show
 else {
 
     $("#A").show();
     $("#B").show();
     $("#C").show();
     $("#D").show();
-
+//assigns a random number based on the number of questions
 current = Math.floor(Math.random() * game.question.length);
 console.log(current);
 
-
+//uses the random number from above to get the guesses
 answerArray = [game.correctAnswer[current], game.wrongChoice1[current], game.wrongChoice2[current], game.wrongChoice3[current]];
 
+//randomizes guesses so the answer isnt always A
 randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
 
 console.log(answerArray);
 
-$(".clock").show();
-
+//displays question based on the current variable assigned above
 $(".question").html(game.question[current] + " is the slogan for which " + game.industry[current] + "?");
 
+//assigns variables to the randomized guesses in the array
 answerA = randomArray[0];
 answerB = randomArray[1];
 answerC = randomArray[2];
 answerD = randomArray[3];
 
+//attaches the text from the variables to the buttons
 $("#A").html(answerA);
 $("#B").html(answerB);
 $("#C").html(answerC);
 $("#D").html(answerD);
 
-var count = 15;
+//countdown clock for each question. when the time runs out a message displays the time is up and the correct answer. the buttons disappear and the losses variable is increased. 
+count = 15;
 interval = setInterval(function(){
   $(".clock").html("<p3>" + count + "</p3>");
   count--;
-  if (count === 0){
+  if (count === -1){
     clearInterval(interval);
     $(".clock").hide();
     $(".gamestatus").show();
@@ -161,6 +173,7 @@ interval = setInterval(function(){
 }
 };
 
+//removes the last set of variables from the arrays in the game object so they are not repeated in the game
 function remove() {
     console.log(game.question);
 
@@ -175,8 +188,11 @@ function remove() {
 
 };
 
+
+//resets the game after a 2 second delay so the user has a chance to view the correct answer.
 function resetGame(){
     var resetCount = 2;
+    
     var resetInterval = setInterval(function(){
       resetCount--;
       if (resetCount === 0){
@@ -185,6 +201,8 @@ function resetGame(){
     }, 1000);
 };
 
+
+//after the user clicks their guess, the buttons are hidden, the function uses an if else statement to determine if the user's choice matched the correctAnswer array in the game object.
 function winLoss() { 
 
     $("#A").hide();
@@ -213,7 +231,7 @@ function winLoss() {
         resetGame();
         
     };
-
+//tallys wins and losses
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
 }
