@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-var wins = 0;
-var losses = 0;
+var wins;
+var losses;
 var userChoice;
 var current;
 var answerArray;
@@ -15,15 +15,21 @@ function resetVar(){
 
     game = {
 
-    question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow"],
-    industry: ["shoe company's", "airline's", "car maker's","candy's"],
-    correctAnswer: ["Nike", "United", "BMW","Skittles"],
-    wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's"],
-    wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces"],
-    wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst"],
-    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg"]
+    question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow","They're GR-R-REAT!", "It Keeps Going, and Going, and Going..."],
+    industry: ["shoe company's", "airline's", "car maker's","candy's","cereal's","battery brand's"],
+    correctAnswer: ["Nike", "United", "BMW","Skittles","Frosted Flakes","Energizer"],
+    wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's", "Rice Krispies","Duracell"],
+    wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces", "Cocoa Puffs","Rayovac"],
+    wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst", "Fruity Pebbles","Eveready"],
+    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg","frostedflakes.jpg","energizer.jpg"]
 
-    }};
+    }
+
+    wins=0;
+    losses=0;
+
+
+};
 
 $("#A").hide();
 $("#B").hide();
@@ -35,10 +41,11 @@ $("#start").on("click", function(){
     
     resetVar(); 
     newQuestion();
-    
+    $(".wins").html("Correct Answers: "+ wins);
+    $(".losses").html("Wrong Answers: "+ losses);
     $("#start").hide();
-
-    $("button").on("click", function(){
+});
+    $(".btn-primary").on("click", function(){
         
         console.log("onclick");
         clearInterval(interval);
@@ -60,7 +67,7 @@ $("#start").on("click", function(){
         
         winLoss();
     });
-});
+
 
 
 
@@ -133,9 +140,9 @@ interval = setInterval(function(){
   count--;
   if (count === 0){
     clearInterval(interval);
-    $(".gamestatus").html("<p3>Time's Up!</p3>");
-    $(".question").hide();
-    $(".question").empty();
+    $(".gamestatus").html("<p2>Time's Up!<br>The correct answer is " + game.correctAnswer[current] + "</p2>");
+   // $(".question").hide();
+   // $(".question").empty();
 
     $("#A").hide();
     $("#B").hide();
@@ -144,6 +151,7 @@ interval = setInterval(function(){
     losses++;
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
+    remove();
     resetGame();
 
 }
@@ -192,7 +200,7 @@ function winLoss() {
 
     } else {
       
-        $(".gamestatus").html("<p3>Wrong Answer!</p3>");
+        $(".gamestatus").html("<p2>Wrong! The correct answer is " + game.correctAnswer[current] + "</p2>");
         $(".question").html('<img src="assets/images/wrong.png" width="100%" />');
         losses++;
         remove();
