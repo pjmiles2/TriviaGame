@@ -14,3 +14,73 @@
 
 
 }
+
+.btn {
+
+    font-family: 'Fjalla One', sans-serif;
+
+
+}
+
+.lead {
+
+
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 20pt;
+    color: gray;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+}
+
+.question {
+
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+    font-size: 20pt;
+    text-align: center;
+
+
+
+}
+
+p3 {
+
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+    font-size: 50pt;
+    text-align: center;
+
+}
+
+#right {
+
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+    font-size: 20pt;
+    text-align: right;
+
+}
+
+p2 {
+
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+    font-size: 20pt;
+    text-align: center;
+
+}
+
+p3 {
+
+    font-family: 'VT323', monospace;
+    color: red;
+    font-size: 100pt;
+    text-align: center;
+
+}
+
+body {
+
+
+    background-color: black;
+}

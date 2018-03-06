@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Londrina+Shadow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Londrina+Shadow|VT323|Fjalla+One" rel="stylesheet">
 
 
 </head>
@@ -21,19 +21,30 @@
         </div>
       </div>
 
-<div class="question"></div>
-
-<button type="button" class="btn" id="start">Start</button>
-<button type="button" class="btn" id="A"></button>
-<button type="button" class="btn" id="B"></button>
-<button type="button" class="btn" id="C"></button>
-<button type="button" class="btn" id="D"></button>
-
-<div class="timer"></div>
+<div class ="container">
+<div class ="row">
+<div class ="col-lg-4" id="clock">
+    
 <div class="gamestatus"></div>
-<div class="wins"></div>
-<div class="losses"></div>
 
+</div>
+
+<div class ="col-lg-4">
+    <div class="question"></div>
+    <p><button type="button" class="btn btn-warning btn-lg btn-block" id="start">Click here to start the game</button></p>
+    <p><button type="button" class="btn btn-primary btn-lg btn-block" id="A"></button></p>
+    <p><button type="button" class="btn btn-primary btn-lg btn-block" id="B"></button></p>
+    <p><button type="button" class="btn btn-primary btn-lg btn-block" id="C"></button></p>
+    <p><button type="button" class="btn btn-primary btn-lg btn-block" id="D"></button></p>
+
+
+</div>
+<div class="col-lg-4">
+<div class="wins" id="right"></div>
+<div class="losses" id="right"></div>
+</div>
+</div>
+</div>
 <script src="assets/javascript/app.js"></script>
 
 </body>

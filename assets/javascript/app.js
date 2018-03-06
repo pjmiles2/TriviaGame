@@ -14,15 +14,22 @@ var interval;
 
 var game = {
 
-
 question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow"],
 industry: ["shoe company's", "airline's", "car maker's","candy's"],
 correctAnswer: ["Nike", "United", "BMW","Skittles"],
 wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's"],
 wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces"],
-wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst"]
+wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst"],
+pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg"]
 
 }
+
+$("#A").hide();
+$("#B").hide();
+$("#C").hide();
+$("#D").hide();
+
+
 $("#start").on("click", function(){
     newQuestion();
     $("#start").hide();
@@ -69,20 +76,20 @@ function resetVariables(){
     var answerB = "";
     var answerC = "";
     var answerD = "";
-    for (var i = answerArray.length; i > 0; i--) {
- 
-        answerArray.pop();
-        
-       }
-       console.log(answerArray);
-       console.log(randomArray);
+
 };
 
 
 function newQuestion(){
 
-    console.log('newQuestion');
-resetVariables();
+    $("#A").show();
+    $("#B").show();
+    $("#C").show();
+    $("#D").show();
+
+    resetVariables();
+
+
 
 current = Math.floor(Math.random() * game.question.length);
 console.log(current);
@@ -109,69 +116,39 @@ $("#B").html(answerB);
 $("#C").html(answerC);
 $("#D").html(answerD);
 
-/*$("button").on("click", function(){
-    
-    console.log("onclick");
-    clearInterval(interval);
-
-    if (this.id === "A") {
-
-        userChoice = answerA;
-
-    } else if (this.id === "B") {
-    
-        userChoice = answerB;
-
-    } else if (this.id === "C"){
-
-        userChoice = answerC;
-    }
-    
-        else {userChoice = answerD;
-        };
-    
-
-     winLoss();
 
 
-});*/
+
 
 var count = 15;
 interval = setInterval(function(){
-  $(".gamestatus").html("Time Left: " + count + " seconds.");
+  $(".gamestatus").html("<p3>" + count + "</p3>");
   count--;
   if (count === 0){
     clearInterval(interval);
-    $(".gamestatus").html("Time's Up");
+    $(".gamestatus").html("<p3>Time's Up!</p3>");
     $(".question").hide();
     $(".question").empty();
 
-    $("#A").empty();
-    $("#B").empty();
-    $("#C").empty();
-    $("#D").empty();
+    $("#A").hide();
+    $("#B").hide();
+    $("#C").hide();
+    $("#D").hide();
     losses++;
-    console.log('new question 1');
-    newQuestion();
-  }
+    $(".wins").html("Correct Answers: "+ wins);
+    $(".losses").html("Wrong Answers: "+ losses);
+    resetGame();
+
+}
 }, 1000);
-
-
-
-
-
-
-
 
 };
 
 function resetGame(){
-    console.log('reset');
     var resetCount = 2;
     var resetInterval = setInterval(function(){
       resetCount--;
       if (resetCount === 0){
-          console.log('new question 2');
         newQuestion();
       }
     }, 1000);
@@ -182,19 +159,25 @@ function resetGame(){
 
 function winLoss() { 
 
-    console.log('winloss');
+    $("#A").hide();
+    $("#B").hide();
+    $("#C").hide();
+    $("#D").hide();
+
     if (userChoice === game.correctAnswer[current]) {
 
 
-        $(".gamestatus").html("Correct! " + game.question[current] + " is the slogan for " + userChoice + ".");
-        userChoice = "";
+        $(".gamestatus").html("<p2>Correct! " + game.question[current] + " is the slogan for " + userChoice + ".</p2>");
+        $(".question").html('<img src="assets/images/' + game.pix[current] + '" width="100%" />');
         wins++;
         resetGame();
 
 
     } else {
 
-        $(".gamestatus").html("Wrong!!");
+      
+        $(".gamestatus").html("<p3>Wrong Answer!</p3>");
+        $(".question").html('<img src="assets/images/wrong.png" width="100%" />');
         losses++;
         resetGame();
 
