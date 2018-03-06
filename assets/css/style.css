@@ -1,7 +1,6 @@
 #jumbo {
 
     background-image: url("../images/logobg.jpg");
-    opacity: 0.5;
     border-bottom: rgb(54, 52, 52);
 }
 
@@ -11,7 +10,6 @@
     font-family: 'Bowlby One SC', cursive;
     font-size: 50pt;
     color: firebrick;
-    opacity: 1;
     text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
 
 

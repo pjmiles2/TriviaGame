@@ -1,7 +1,9 @@
+$(document).ready(function(){
+
+
 //function to display question
 
 
-var counter = 0;
 var wins = 0;
 var losses = 0;
 var userChoice;
@@ -21,20 +23,18 @@ wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces"],
 wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst"]
 
 }
+$("#start").on("click", function(){
+    newQuestion();
+    $("#start").hide();
 
+});
 
 function newQuestion(){
-
-    $("button").trigger("reset");
   
-
-clearTimeout(resetTimeout);
-clearTimeout(windowTimeout);
 
 var current = Math.floor(Math.random() * game.question.length);
 console.log(current);
     
-
 answerArray = [game.correctAnswer[current], game.wrongChoice1[current], game.wrongChoice2[current], game.wrongChoice3[current]];
 
 var randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
@@ -52,16 +52,20 @@ var answerB = randomArray[1];
 var answerC = randomArray[2];
 var answerD = randomArray[3];
 
-$("#A").append(answerA);
-$("#B").append(answerB);
-$("#C").append(answerC);
-$("#D").append(answerD);
+$("#A").html(answerA);
+$("#B").html(answerB);
+$("#C").html(answerC);
+$("#D").html(answerD);
 
 
 
-windowTimeout = setTimeout(function(){
-
-    $(".gamestatus").html("Time's Up!")
+var count = 15;
+var interval = setInterval(function(){
+  $(".gamestatus").html("Time Left: " + count + " seconds.");
+  count--;
+  if (count === 0){
+    clearInterval(interval);
+    $(".gamestatus").html("Time's Up");
     $(".question").hide();
     $(".question").empty();
 
@@ -70,13 +74,16 @@ windowTimeout = setTimeout(function(){
     $("#C").empty();
     $("#D").empty();
     losses++;
-    
+    resetGame();
+  }
+}, 1000);
 
-}, 10000);
+
+
 
 $("button").on("click", function(){
     
-    clearTimeout(windowTimeout);
+    clearInterval(interval);
 
 
     if (this.id === "A") {
@@ -104,39 +111,38 @@ $("button").on("click", function(){
 
 function resetGame(){
 
-    resetTimeout = setTimeout(function(){
-
-        newQuestion();
-
+    var resetcount = 2;
+    var interval = setInterval(function(){
+      count--;
+      if (count === 0){
+      newQuestion();
+      }
     }, 1000);
+
 
 
 };
 
 function winLoss() { 
-    
+
 
     if (userChoice === game.correctAnswer[current]) {
 
-        clearTimeout(windowTimeout);
 
         $(".gamestatus").html("Correct! " + game.question[current] + " is the slogan for " + userChoice + ".");
-        wins++;
         resetGame();
+        wins++;
 
 
     } else {
 
-        clearTimeout(windowTimeout);
-
         $(".gamestatus").html("Wrong!!");
-        losses++;
-        resetGame();
       
-
+        losses++;
     };
 
-    
+    resetGame();
+
 
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
@@ -146,9 +152,9 @@ function winLoss() {
 
 };
 
-newQuestion();
 
 
+});
 
 
 
