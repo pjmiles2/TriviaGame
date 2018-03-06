@@ -53,8 +53,7 @@ $("#start").on("click", function(){
             userChoice = answerC;
         }
         
-            else {userChoice = answerD;
-            };
+        else {userChoice = answerD;};
         
 
         winLoss();
@@ -82,18 +81,33 @@ function resetVariables(){
 
 function newQuestion(){
 
+
+
+    resetVariables();
+
+if (game.question.length === 0) { 
+    
+    $(".question").html('<img src="assets/images/gameover.jpg" width="100%" />');
+    $("#A").hide();
+    $("#B").hide();
+    $("#C").hide();
+    $("#D").hide();
+    $(".gamestatus").hide();
+
+
+}
+
+else {
+
     $("#A").show();
     $("#B").show();
     $("#C").show();
     $("#D").show();
 
-    resetVariables();
-
-
-
 current = Math.floor(Math.random() * game.question.length);
 console.log(current);
-    
+
+
 answerArray = [game.correctAnswer[current], game.wrongChoice1[current], game.wrongChoice2[current], game.wrongChoice3[current]];
 
 randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
@@ -116,10 +130,6 @@ $("#B").html(answerB);
 $("#C").html(answerC);
 $("#D").html(answerD);
 
-
-
-
-
 var count = 15;
 interval = setInterval(function(){
   $(".gamestatus").html("<p3>" + count + "</p3>");
@@ -141,6 +151,20 @@ interval = setInterval(function(){
 
 }
 }, 1000);
+}
+};
+
+function remove() {
+    console.log(game.question);
+
+    game.question.splice((current),1);
+    game.industry.splice((current),1);
+    game.correctAnswer.splice((current),1);
+    game.wrongChoice1.splice((current),1);
+    game.wrongChoice2.splice((current),1);
+    game.wrongChoice3.splice((current),1);
+    game.pix.splice((current),1);
+    console.log(game.question);
 
 };
 
@@ -164,14 +188,20 @@ function winLoss() {
     $("#C").hide();
     $("#D").hide();
 
+
+
+
     if (userChoice === game.correctAnswer[current]) {
 
 
         $(".gamestatus").html("<p2>Correct! " + game.question[current] + " is the slogan for " + userChoice + ".</p2>");
         $(".question").html('<img src="assets/images/' + game.pix[current] + '" width="100%" />');
         wins++;
+        remove();
+
         resetGame();
 
+                 
 
     } else {
 
@@ -179,11 +209,11 @@ function winLoss() {
         $(".gamestatus").html("<p3>Wrong Answer!</p3>");
         $(".question").html('<img src="assets/images/wrong.png" width="100%" />');
         losses++;
+        remove();
         resetGame();
 
+        
     };
-
-
 
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
@@ -192,7 +222,13 @@ function winLoss() {
 
 
 
+
+
+
+
 });
+
+
 
 
 
