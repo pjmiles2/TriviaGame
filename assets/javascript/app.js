@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-
-//function to display question
-
-
 var wins = 0;
 var losses = 0;
 var userChoice;
@@ -12,17 +8,22 @@ var answerArray;
 var randomArray;
 var interval;
 
-var game = {
+var game;
 
-question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow"],
-industry: ["shoe company's", "airline's", "car maker's","candy's"],
-correctAnswer: ["Nike", "United", "BMW","Skittles"],
-wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's"],
-wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces"],
-wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst"],
-pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg"]
 
-}
+function resetVar(){
+
+    game = {
+
+    question: ["Just Do It", "Fly the Friendly Skies", "The Ultimate Driving Machine","Taste the Rainbow"],
+    industry: ["shoe company's", "airline's", "car maker's","candy's"],
+    correctAnswer: ["Nike", "United", "BMW","Skittles"],
+    wrongChoice1: ["Reebok", "Delta", "Lexus", "M&M's"],
+    wrongChoice2: ["Adidas", "American", "Ford", "Reese's Pieces"],
+    wrongChoice3: ["Converse", "Southwest", "Cadillac", "Starburst"],
+    pix: ["nike.jpg","united.jpg","bmw.png","skittles.jpg"]
+
+    }};
 
 $("#A").hide();
 $("#B").hide();
@@ -31,9 +32,11 @@ $("#D").hide();
 
 
 $("#start").on("click", function(){
+    
+    resetVar(); 
     newQuestion();
+    
     $("#start").hide();
-
 
     $("button").on("click", function(){
         
@@ -55,12 +58,8 @@ $("#start").on("click", function(){
         
         else {userChoice = answerD;};
         
-
         winLoss();
-
-
     });
-
 });
 
 
@@ -78,10 +77,7 @@ function resetVariables(){
 
 };
 
-
 function newQuestion(){
-
-
 
     resetVariables();
 
@@ -93,8 +89,9 @@ if (game.question.length === 0) {
     $("#C").hide();
     $("#D").hide();
     $(".gamestatus").hide();
+    $("#start").show();
 
-
+    
 }
 
 else {
@@ -114,7 +111,7 @@ randomArray = answerArray.sort(function() { return 0.5 - Math.random() });
 
 console.log(answerArray);
 
-$(".question").show();
+//$(".question").show();
 
 $(".gamestatus").show();
 
@@ -176,9 +173,6 @@ function resetGame(){
         newQuestion();
       }
     }, 1000);
-
-
-
 };
 
 function winLoss() { 
@@ -188,44 +182,27 @@ function winLoss() {
     $("#C").hide();
     $("#D").hide();
 
-
-
-
     if (userChoice === game.correctAnswer[current]) {
-
 
         $(".gamestatus").html("<p2>Correct! " + game.question[current] + " is the slogan for " + userChoice + ".</p2>");
         $(".question").html('<img src="assets/images/' + game.pix[current] + '" width="100%" />');
         wins++;
         remove();
-
         resetGame();
 
-                 
-
     } else {
-
       
         $(".gamestatus").html("<p3>Wrong Answer!</p3>");
         $(".question").html('<img src="assets/images/wrong.png" width="100%" />');
         losses++;
         remove();
         resetGame();
-
         
     };
 
     $(".wins").html("Correct Answers: "+ wins);
     $(".losses").html("Wrong Answers: "+ losses);
-
 }
-
-
-
-
-
-
-
 });
 
 
